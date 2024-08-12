@@ -29,4 +29,4 @@ print("Area of circle = ", areaOfCircle);
 totalBill = 3400;
 numOfPeople = 4;
 spiliValue = totalBill / numOfPeople;
-print("Each person will pay, ", spiliValue)
+print("Each person will pay, ", spiliValue);

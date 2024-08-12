@@ -1,0 +1,5 @@
+In this task, you will write a program to read data from a text file, process the data by
+counting the number of words, lines, and characters, and then write the processed data to a
+new file. The program should include error handling to manage potential exceptions that
+may occur during file operations, such as file not found or read/write errors. This exercise
+helps in mastering file I/O operations and exception handling in Python.
