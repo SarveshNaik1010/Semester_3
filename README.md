@@ -1,6 +1,6 @@
 # Sem-3 Assignments</h1>
-Above are the assignments for each subject of 3rd semester with a dedicated folder for each subject.
+This repository contains all the assignments for each subject in the 3rd semester, neatly organized into dedicated folders.
 
-Follow me for more such assignments and projects! 😉 👉 <a href="https://github.com/SarveshNaik1010/">Sarvesh Naik</a> 
+**Note**: Use this repository for **reference** purposes only. Please **DO NOT** copy the assignments directly.
 
--Note: Use this repository for **reference** purpose only. Do **NOT** directly copy the assignments as it is!
+Follow me for more assignments and projects! 😉 <a href="https://github.com/SarveshNaik1010">**Sarvesh Naik**<a>
