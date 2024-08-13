@@ -3,4 +3,4 @@ This repository contains all the assignments for each subject in the 3rd semeste
 
 **Note**: Use this repository for **reference** purposes only. Please **DO NOT** copy the assignments directly.
 
-Follow me for more assignments and projects! 😉 <a href="https://github.com/SarveshNaik1010">**Sarvesh Naik**<a>
+Follow me for more assignments and projects! 😉 👉 <a href="https://github.com/SarveshNaik1010">**Sarvesh Naik**<a>
