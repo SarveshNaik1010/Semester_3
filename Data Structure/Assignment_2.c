@@ -1,7 +1,7 @@
 #include<stdio.h>
 
 int stack[10];
-int size = 10;
+int size = 5 - 1;
 int top = -1;
 
 int push() {
@@ -26,17 +26,17 @@ int pop() {
 
 int display() {
     printf("Elements are:\n");
-    for(int i = 0; i < top; i++) {
+    for(int i = top; i >= 0; i--) {
         printf("%d ", stack[i]);
     }
     printf("\n");
 }
 
 void main() {
+    printf("Welcome to Stack Operations 👋\n");
     while(1) {
         int choice;
-        printf("Welcome to Stack Operations 👋\n");
-        printf("Enter 1. Push, 2. Pop, 3. Display 👋\n");
+        printf("Enter 1. Push, 2. Pop, 3. Display\n");
         scanf("%d", &choice);
         switch(choice) {
             case 1: push(); break;
