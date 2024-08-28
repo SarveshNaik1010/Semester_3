@@ -1,0 +1,2 @@
+gcc .\practice.c
+./a.exe
