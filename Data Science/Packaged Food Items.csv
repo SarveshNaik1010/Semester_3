@@ -1,5 +1,5 @@
 Food Brand,Company,Weight,Price,Sugar,Carbohydrates,Protein,Fat,Saturated Fat,Trans Fat,Cholesterol,Sodium,Dietary Fiber,Total Sugars,Added Sugars,Vitamin A,Vitamin C,Calcium,Iron,Serving Size,Calories per Serving,Calories from Fat,Ingredients,Allergens,Shelf Life,Manufacturer Country
-Oreo,Mondelez,120,30,14,68.3,5,22.5,10,0.1,0,400,3.6,14,14,0,0,2,15,30,160,45,"Wheat Flour, Sugar, Palm Oil, Cocoa, etc.","Wheat, Soy",9,India
+Oreo,Mondelez,120,30,14,,5,22.5,10,0.1,0,400,3.6,14,14,0,0,2,15,30,160,45,"Wheat Flour, Sugar, Palm Oil, Cocoa, etc.","Wheat, Soy",9,India
 Maggi,Nestle,70,12,2,44,7,11,5,0.1,5,760,2,2,2,0,0,2,8,70,310,70,"Wheat Flour, Palm Oil, Salt, etc.","Wheat, Soy",9,India
 Lays,PepsiCo,52,20,1.2,15.7,2,10.5,3,0.2,0,180,1.2,1.2,1.2,0,0,0,2,28,160,60,"Potatoes, Vegetable Oil, Salt, etc.","Potatoes, Soy",6,India
 Dairy Milk,Cadbury,36,40,20,29,3.4,12,7,0.1,5,22,0.2,20,15,0,0,8,2,36,200,100,"Milk, Sugar, Cocoa, Butter, etc.","Milk, Soy",12,India
