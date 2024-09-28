@@ -1,32 +1,74 @@
-#include<stdio.h>
+#include <stdio.h>
 
-int max = 3;
-int stack[3];
 int top = -1;
 
-void main() {
-    printf("Welcum to Stack operations\n");
-    push();
-}
+int stack[10];
 
-void push() {
-    int num;
-    printf("\n%d\n", top);
-    if(top == (max - 1)) {
-        printf("Stack Overflow | Tumhari maa ki chut!");
-    } else {
-        top++;
-        printf("Enter the element: ");
-        scanf("%d", &num);
-        stack[top] = num;
-        display();
+int push(int ele) {
+    if(top == 10) {
+        printf("Stack overflow\n");
+        return 0;
     }
+    top++;
+    stack[top] = ele;
+    printf("Element %d inserted successfully\n", stack[top]);
+    return 1;
 }
 
-void display() {
+int pop() {
+    if(top == -1) {
+        printf("Stack underflow\n");
+        return 0;
+    }
+    printf("Element popped successfully");
+    top--;
+}
+
+int display() {
+    if(top == -1) {
+        printf("Please insert element before\n");
+        return 0;
+    }
+    printf("[");
     for(int i = top; i >= 0; i--) {
-        printf("%d ", stack[i]);
+        printf("%d, ", stack[i]);
     }
-        printf("\n");
-    push();
+    printf("]\n");
+    return 1;
 }
+
+void main() {
+    int flag = 1, op, ele;
+
+    printf("Welcome to stack operation\n");
+    while(flag == 1) {
+        printf("Select stack operation\n1. Push\n2. Pop\n3. Display\n");
+        scanf("%d", &op);
+        switch (op)
+        {
+            case 1: {
+                printf("Enter the element that you want to push: ");
+                scanf("%d", &ele);
+                push(ele);
+                break;
+            } 
+
+            case 2: {
+                pop();
+                break;
+            } 
+
+            case 3: {
+                display();
+                break;
+            } 
+                
+            
+            default: {
+                printf("Please enter one of these numbers => 1, 2 or 3\n");
+                break;
+            }
+        }
+    }
+}
+
