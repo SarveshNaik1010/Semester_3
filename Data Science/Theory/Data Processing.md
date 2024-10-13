@@ -100,6 +100,8 @@ Data wrangling (also called data munging) refers to the process of transforming 
 - Reshaping Data: Transforming the format of data (e.g., converting from wide to long format).
 - Data Filtering: Removing unnecessary data to focus on relevant information.
 
+***
+
 - **Merging DataFrames**:  
   ```python
   df1 = pd.DataFrame({'ID': [1, 2], 'Name': ['Alice', 'Bob']})
