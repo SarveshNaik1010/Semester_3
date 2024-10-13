@@ -92,7 +92,13 @@ Microsoft Excel files can be processed using Pandas and openpyxl libraries.
 ---
 
 ### **6. Data Wrangling**
-Data wrangling is the process of converting raw data into a suitable format for analysis.
+Data wrangling (also called data munging) refers to the process of transforming raw, messy data into a structured, clean, and usable format for analysis. It involves identifying and fixing data quality issues, reformatting datasets, and restructuring or merging data from different sources. This step is essential for building reliable data models, reports, and visualizations.
+
+- Data Cleaning: Handling missing values, fixing inconsistencies, and correcting data types.
+- Data Transformation: Modifying data to fit analysis needs (e.g., scaling, encoding categorical variables).
+- Data Merging: Combining datasets from different sources into one.
+- Reshaping Data: Transforming the format of data (e.g., converting from wide to long format).
+- Data Filtering: Removing unnecessary data to focus on relevant information.
 
 - **Merging DataFrames**:  
   ```python
