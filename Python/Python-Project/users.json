@@ -1,0 +1,27 @@
+[
+  {
+    "username": "john_doe",
+    "password": "1111",
+    "issuedBooks": []
+  },
+  {
+    "username": "jane_smith",
+    "password": "1111",
+    "issuedBooks": []
+  },
+  {
+    "username": "mike_brown",
+    "password": "1111",
+    "issuedBooks": []
+  },
+  {
+    "username": "lisa_jones",
+    "password": "1111",
+    "issuedBooks": []
+  },
+  {
+    "username": "sarah_connor",
+    "password": "1111",
+    "issuedBooks": []
+  }
+]

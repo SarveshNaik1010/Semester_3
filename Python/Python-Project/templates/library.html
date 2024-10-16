@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard - Library Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script defer src="{{ url_for('static', filename='library.js') }}"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen p-8">
+    <script>
+      async function aa() {
+        const res = await fetch(`http://127.0.0.1:5000/api/v1/user`);
+        const data = await res.json();
+        console.log(data);
+      }
+      aa();
+    </script>
+
+    <!-- Main Wrapper -->
+    <div class="flex flex-col space-y-8 min-h-screen">
+      <!-- Top Row: Search and Issued Books Side by Side -->
+      <div class="flex flex-col md:flex-row gap-8 flex-1">
+        <!-- Book Search Section -->
+        <div class="flex-1 bg-white shadow-md rounded-md p-6">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">Search Books</h2>
+          <div class="flex justify-center items-center gap-4 mb-6">
+            <input
+              type="text"
+              placeholder="Search books..."
+              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+            <button
+              class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            >
+              Search
+            </button>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <!-- Book Card -->
+            <div class="bg-gray-50 rounded-md p-4">
+              <img
+                src="https://via.placeholder.com/100x140"
+                alt="Book Cover"
+                class="w-full h-40 object-cover rounded-md"
+              />
+              <h3 class="mt-2 text-lg font-semibold text-gray-800">
+                Book Title
+              </h3>
+              <p class="text-sm text-gray-500">Author Name</p>
+            </div>
+            <!-- Repeat Book Card -->
+            <div class="bg-gray-50 rounded-md p-4">
+              <img
+                src="https://via.placeholder.com/100x140"
+                alt="Book Cover"
+                class="w-full h-40 object-cover rounded-md"
+              />
+              <h3 class="mt-2 text-lg font-semibold text-gray-800">
+                Book Title
+              </h3>
+              <p class="text-sm text-gray-500">Author Name</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Issued Books Section -->
+        <div class="w-full md:w-1/3 bg-white shadow-md rounded-md p-6">
+          <h2 class="text-2xl font-bold text-gray-800 mb-4">Issued Books</h2>
+          <div class="space-y-4 overflow-y-auto" style="max-height: 500px">
+            <!-- Issued Book Card -->
+            <div class="bg-gray-50 p-4 rounded-md flex items-center gap-4">
+              <img
+                src="https://via.placeholder.com/100x140"
+                alt="Book Cover"
+                class="w-16 h-24 object-cover rounded-md"
+              />
+              <div>
+                <h3 class="text-lg font-semibold text-gray-800">Book Title</h3>
+                <p class="text-sm text-gray-500">Issue Date: 15-10-2024</p>
+                <p class="text-sm text-gray-500">Deadline: 25-10-2024</p>
+                <button
+                  class="px-2 bg-blue-500 text-white rb-2 hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                >
+                  Return
+                </button>
+              </div>
+            </div>
+            <!-- Repeat Issued Book Card -->
+            <div class="bg-gray-50 p-4 rounded-md flex items-center gap-4">
+              <img
+                src="https://via.placeholder.com/100x140"
+                alt="Book Cover"
+                class="w-16 h-24 object-cover rounded-md"
+              />
+              <div>
+                <h3 class="text-lg font-semibold text-gray-800">Book Title</h3>
+                <p class="text-sm text-gray-500">Issued on: 5 Oct, 2024</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
