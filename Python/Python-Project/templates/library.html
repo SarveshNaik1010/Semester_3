@@ -9,15 +9,6 @@
     <script defer src="{{ url_for('static', filename='library.js') }}"></script>
   </head>
   <body class="bg-gray-100 min-h-screen p-8">
-    <script>
-      async function aa() {
-        const res = await fetch(`http://127.0.0.1:5000/api/v1/user`);
-        const data = await res.json();
-        console.log(data);
-      }
-      aa();
-    </script>
-
     <!-- Main Wrapper -->
     <div class="flex flex-col space-y-8 min-h-screen">
       <!-- Top Row: Search and Issued Books Side by Side -->
@@ -28,80 +19,220 @@
           <div class="flex justify-center items-center gap-4 mb-6">
             <input
               type="text"
+              value="verity"
               placeholder="Search books..."
-              class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              class="input-search w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
             <button
-              class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              class="btn-search px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none"
             >
               Search
             </button>
           </div>
-          <div class="grid grid-cols-2 gap-4">
-            <!-- Book Card -->
-            <div class="bg-gray-50 rounded-md p-4">
-              <img
-                src="https://via.placeholder.com/100x140"
-                alt="Book Cover"
-                class="w-full h-40 object-cover rounded-md"
-              />
-              <h3 class="mt-2 text-lg font-semibold text-gray-800">
-                Book Title
-              </h3>
-              <p class="text-sm text-gray-500">Author Name</p>
-            </div>
-            <!-- Repeat Book Card -->
-            <div class="bg-gray-50 rounded-md p-4">
-              <img
-                src="https://via.placeholder.com/100x140"
-                alt="Book Cover"
-                class="w-full h-40 object-cover rounded-md"
-              />
-              <h3 class="mt-2 text-lg font-semibold text-gray-800">
-                Book Title
-              </h3>
-              <p class="text-sm text-gray-500">Author Name</p>
-            </div>
-          </div>
+          <div class="results-div grid grid-cols-2 gap-4"></div>
         </div>
 
         <!-- Issued Books Section -->
         <div class="w-full md:w-1/3 bg-white shadow-md rounded-md p-6">
           <h2 class="text-2xl font-bold text-gray-800 mb-4">Issued Books</h2>
-          <div class="space-y-4 overflow-y-auto" style="max-height: 500px">
-            <!-- Issued Book Card -->
-            <div class="bg-gray-50 p-4 rounded-md flex items-center gap-4">
-              <img
-                src="https://via.placeholder.com/100x140"
-                alt="Book Cover"
-                class="w-16 h-24 object-cover rounded-md"
-              />
-              <div>
-                <h3 class="text-lg font-semibold text-gray-800">Book Title</h3>
-                <p class="text-sm text-gray-500">Issue Date: 15-10-2024</p>
-                <p class="text-sm text-gray-500">Deadline: 25-10-2024</p>
-                <button
-                  class="px-2 bg-blue-500 text-white rb-2 hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-                >
-                  Return
-                </button>
-              </div>
-            </div>
-            <!-- Repeat Issued Book Card -->
-            <div class="bg-gray-50 p-4 rounded-md flex items-center gap-4">
-              <img
-                src="https://via.placeholder.com/100x140"
-                alt="Book Cover"
-                class="w-16 h-24 object-cover rounded-md"
-              />
-              <div>
-                <h3 class="text-lg font-semibold text-gray-800">Book Title</h3>
-                <p class="text-sm text-gray-500">Issued on: 5 Oct, 2024</p>
-              </div>
-            </div>
-          </div>
+          <div
+            class="issued-div space-y-4 overflow-y-auto"
+            style="max-height: 500px"
+          ></div>
         </div>
       </div>
     </div>
+
+    <script>
+      x = {
+        title: '"I GIVE YOU MY BODY ..."',
+        description:
+          "The author of the Outlander novels gives tips on writing sex scenes, drawing on examples from the books.",
+        contributor: "by Diana Gabaldon",
+        author: "Diana Gabaldon",
+        contributor_note: "",
+        price: "0.00",
+        age_group: "",
+        publisher: "Dell",
+        isbns: [
+          {
+            isbn10: "0399178570",
+            isbn13: "9780399178573",
+          },
+        ],
+        ranks_history: [
+          {
+            primary_isbn10: "0399178570",
+            primary_isbn13: "9780399178573",
+            rank: 8,
+            list_name: "Advice How-To and Miscellaneous",
+            display_name: "Advice, How-To & Miscellaneous",
+            published_date: "2016-09-04",
+            bestsellers_date: "2016-08-20",
+            weeks_on_list: 1,
+            rank_last_week: 0,
+            asterisk: 0,
+            dagger: 0,
+          },
+        ],
+        reviews: [
+          {
+            book_review_link: "",
+            first_chapter_link: "",
+            sunday_review_link: "",
+            article_chapter_link: "",
+          },
+        ],
+      };
+
+      const BASE_URL = "http://127.0.0.1:5000";
+      const inputSearch = document.querySelector(".input-search");
+      const btnSearch = document.querySelector(".btn-search");
+      const resultsDiv = document.querySelector(".results-div");
+      const issuedDiv = document.querySelector(".issued-div");
+      const renderSearchResults = async function (searchValue, type = "book") {
+        resultsDiv.innerHTML = "Loading...";
+        let res;
+        if (type === "book")
+          res = await fetch(
+            `https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json?title=${searchValue}&api-key=7xlAIKMETqY2V23B1B7rtASc4jfaNokW`
+          );
+        else
+          res = await fetch(
+            `https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json?title=${searchValue}&api-key=7xlAIKMETqY2V23B1B7rtASc4jfaNokW`
+          );
+        const data = await res.json();
+        resultsDiv.innerHTML = "";
+        data.results.forEach((book, i) => {
+          const markup = `
+            <div class="bg-gray-50 rounded-md p-4">
+                  <img
+                    src="https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+                    alt="Book Cover"
+                    class="w-40 h-90 object-cover rounded-md"
+                  />
+                  <h3 class="mt-2 text-lg font-semibold text-gray-800">
+                  ${book.title} - ${book.author}
+                  </h3>
+                  <p class="text-sm text-gray-500">${book.description}</p>
+                  <button id="book-${i}" data-isbns=${book.isbns[0].isbn10} class="px-6 mt-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none">Issue Book</button>
+                </div>
+            `;
+          resultsDiv.insertAdjacentHTML("afterbegin", markup);
+          const btnIssueBook = document.querySelector(`#book-${i}`);
+          btnIssueBook.addEventListener("click", async function () {
+            const currUser = JSON.parse(localStorage.getItem("currUser"));
+            const isbnLink = `https://api.nytimes.com/svc/books/v3/lists/best-sellers/history.json?isbn=${btnIssueBook.dataset.isbns}&api-key=7xlAIKMETqY2V23B1B7rtASc4jfaNokW`;
+
+            newBook = {
+              book: book.title,
+              from: Date.now(),
+              to: Date.now() + 24 * 60 * 60 * 1000 * 7,
+            };
+
+            // Books logic
+            booksArray = [...currUser.books, newBook];
+
+            const res = await fetch(
+              `${BASE_URL}/api/v1/user/${currUser.username}`,
+              {
+                method: "PATCH",
+                body: JSON.stringify({
+                  books: booksArray,
+                }),
+                headers: {
+                  "Content-Type": "Application/JSON",
+                },
+              }
+            );
+            const { data } = await res.json();
+            console.log(data);
+            localStorage.setItem("currUser", JSON.stringify(data));
+            renderIssuedBooks();
+          });
+        });
+      };
+
+      const renderIssuedBooks = function () {
+        const user = JSON.parse(localStorage.getItem("currUser"));
+        console.log(user);
+        if (!user.books)
+          return (issuedDiv.innerHTML =
+            "<h2>Start by issuing new book 📖</h2>");
+        issuedDiv.innerHTML = "";
+        user.books.forEach((book, i) => {
+          const markup = `
+          <div class="bg-gray-50 p-4 rounded-md flex items-center gap-4">
+              <img
+                src="https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+                alt="Book Cover"
+                class="w-16 h-24 object-cover rounded-md"
+              />
+              <div>
+                <h3 class="text-lg font-semibold text-gray-800">${
+                  book.book
+                }</h3>
+                <p class="text-sm text-gray-500">Issue Date: ${new Date(
+                  book.from
+                ).toLocaleDateString("en-IN")}</p>
+                <p class="text-sm text-gray-500">Deadline: ${new Date(
+                  book.to
+                ).toLocaleDateString("en-IN")}</p>
+                <button
+                  id="${book.book}-${i}"
+                  data-bookName="${book.book}"
+                  class="px-2 mt-2 br-2 bg-blue-500 text-white rb-2 hover:bg-blue-600 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+                >
+                  Return Book
+                </button>
+              </div>
+            </div>
+          `;
+          issuedDiv.insertAdjacentHTML("afterbegin", markup);
+          const btnReturn = document.getElementById(`${book.book}-${i}`);
+          btnReturn.addEventListener("click", async function (e) {
+            const newBooks = user.books.filter((book, ind) => {
+              console.log(ind, i);
+              return i !== ind;
+            });
+            const res = await fetch(
+              `http://127.0.0.1:5000/api/v1/user/${user.username}`,
+              {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "Application/JSON",
+                },
+                body: JSON.stringify({
+                  books: newBooks,
+                }),
+              }
+            );
+            const data = await res.json();
+            console.log(data);
+            localStorage.setItem("currUser", JSON.stringify(data.data));
+            renderIssuedBooks();
+            if (Date.now() > book.to) {
+              return alert(
+                "Book returned, although due to late return you are charged with ₹25."
+              );
+            } else {
+              return alert("Book Returned Successfully");
+            }
+          });
+          console.log(book);
+        });
+      };
+
+      btnSearch.addEventListener("click", function () {
+        renderSearchResults(inputSearch.value);
+      });
+
+      window.addEventListener("load", function () {
+        if (!localStorage.getItem("isLoggedIn")) {
+          window.location = `${BASE_URL}/login`;
+        }
+        renderIssuedBooks();
+      });
+    </script>
   </body>
 </html>

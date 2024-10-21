@@ -46,11 +46,48 @@
         <!-- Submit Button -->
         <button
           type="submit"
-          class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition"
+          class="btn-login w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition"
         >
           Login
         </button>
+        <h2 class="message"></h2>
       </form>
+
+      <script>
+        const btnLogin = document.querySelector(".btn-login");
+        const message = document.querySelector(".message");
+        const inputUsername = document.querySelector("#username");
+        const inputPassword = document.querySelector("#password");
+        const BASE_URL = "http://127.0.0.1:5000";
+        btnLogin.addEventListener("click", async function (e) {
+          e.preventDefault();
+          const res = await fetch(
+            `http://127.0.0.1:5000/user/authticate/login`,
+            {
+              method: "POST",
+              body: JSON.stringify({
+                username: inputUsername.value,
+                password: inputPassword.value,
+              }),
+              headers: {
+                "Content-Type": "Application/JSON",
+              },
+            }
+          );
+          const data = await res.json();
+          console.log(data);
+          if (data.isLoggedIn) {
+            const jsonBooks = data.currUser.books || [];
+            const validJsonStr = jsonBooks.replace(/'/g, '"');
+            data.currUser.books = JSON.parse(validJsonStr);
+            console.log(data.currUser);
+            localStorage.setItem("isLoggedIn", data.isLoggedIn);
+            localStorage.setItem("currUser", JSON.stringify(data.currUser));
+            return (window.location = `${BASE_URL}/library`);
+          }
+          message.textContent = data.message;
+        });
+      </script>
     </div>
   </body>
 </html>
